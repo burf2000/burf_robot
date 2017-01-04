@@ -36,11 +36,11 @@ PWRDIV=1000*RPS
 
 rospy.loginfo("PWRDIV:"+str(PWRDIV))
 
-RF_WHEEL=PORT_A
+RF_WHEEL=PORT_C
 LF_WHEEL=PORT_D
 
-RB_WHEEL=PORT_B
-LB_WHEEL=PORT_C
+#RB_WHEEL=PORT_B
+#LB_WHEEL=PORT_C
 
 FWDIR=-1
 
@@ -48,8 +48,8 @@ BrickPiSetup()
 
 BrickPi.MotorEnable[RF_WHEEL] = 1
 BrickPi.MotorEnable[LF_WHEEL] = 1
-BrickPi.MotorEnable[RB_WHEEL] = 1
-BrickPi.MotorEnable[LB_WHEEL] = 1
+#BrickPi.MotorEnable[RB_WHEEL] = 1
+#BrickPi.MotorEnable[LB_WHEEL] = 1
 
 BrickPi.SensorType[PORT_1] = TYPE_SENSOR_ULTRASONIC_CONT
 
@@ -73,10 +73,10 @@ def motor_control(left_speed_out,right_speed_out):
     rospy.loginfo("RF:"+str(BrickPi.MotorSpeed[RF_WHEEL]))
     BrickPi.MotorSpeed[LF_WHEEL] = int(-left_speed_out*PWRDIV)
     rospy.loginfo("LF:"+str(BrickPi.MotorSpeed[LF_WHEEL]))
-    BrickPi.MotorSpeed[RB_WHEEL] = int(right_speed_out*PWRDIV)
-    rospy.loginfo("RB:"+str(BrickPi.MotorSpeed[RB_WHEEL]))
-    BrickPi.MotorSpeed[LB_WHEEL] = int(left_speed_out*PWRDIV)
-    rospy.loginfo("LB:"+str(BrickPi.MotorSpeed[LB_WHEEL]))
+    #BrickPi.MotorSpeed[RB_WHEEL] = int(right_speed_out*PWRDIV)
+    #rospy.loginfo("RB:"+str(BrickPi.MotorSpeed[RB_WHEEL]))
+    #BrickPi.MotorSpeed[LB_WHEEL] = int(left_speed_out*PWRDIV)
+    #rospy.loginfo("LB:"+str(BrickPi.MotorSpeed[LB_WHEEL]))
     BrickPiUpdateValues()
     time.sleep(.01)
     scan_publisher()
