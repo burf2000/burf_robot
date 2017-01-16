@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 ##############################################################################
-# Base controller for MockBotBrickPi
-# This is a simple control of the 4 servos connected to the BrickPi board
-# Author: chrimo@moccy.xdsnet.de
-#
+# Base controller for BurfBot
+# This is a simple control of the 2 servos connected to the BrickPi board
+# Author: burf2000@gmail based off work by chrimo@moccy.xdsnet.de
 ##############################################################################
 
 import roslib
 import rospy
 
-from BrickPi import *   
-
+from BrickPi import *
 from std_msgs.msg import String
 from std_msgs.msg import UInt16
 from geometry_msgs.msg import Twist
@@ -31,7 +29,6 @@ MAX_RPM=80.0
 RPS=MAX_RPM/60.0
 
 MPS=RPS*WHEEL_PERIMETER
-
 PWRDIV=1000*RPS
 
 rospy.loginfo("PWRDIV:"+str(PWRDIV))
@@ -39,20 +36,10 @@ rospy.loginfo("PWRDIV:"+str(PWRDIV))
 RF_WHEEL=PORT_C
 LF_WHEEL=PORT_D
 
-#RB_WHEEL=PORT_B
-#LB_WHEEL=PORT_C
-
-FWDIR=-1
-
 BrickPiSetup()
-
 BrickPi.MotorEnable[RF_WHEEL] = 1
 BrickPi.MotorEnable[LF_WHEEL] = 1
-#BrickPi.MotorEnable[RB_WHEEL] = 1
-#BrickPi.MotorEnable[LB_WHEEL] = 1
-
 BrickPi.SensorType[PORT_1] = TYPE_SENSOR_ULTRASONIC_CONT
-
 BrickPiSetupSensors()
 
 def cmd_vel_callback(cmd_vel):
@@ -73,10 +60,6 @@ def motor_control(left_speed_out,right_speed_out):
     rospy.loginfo("RF:"+str(BrickPi.MotorSpeed[RF_WHEEL]))
     BrickPi.MotorSpeed[LF_WHEEL] = int(-left_speed_out*PWRDIV)
     rospy.loginfo("LF:"+str(BrickPi.MotorSpeed[LF_WHEEL]))
-    #BrickPi.MotorSpeed[RB_WHEEL] = int(right_speed_out*PWRDIV)
-    #rospy.loginfo("RB:"+str(BrickPi.MotorSpeed[RB_WHEEL]))
-    #BrickPi.MotorSpeed[LB_WHEEL] = int(left_speed_out*PWRDIV)
-    #rospy.loginfo("LB:"+str(BrickPi.MotorSpeed[LB_WHEEL]))
     BrickPiUpdateValues()
     time.sleep(.01)
     scan_publisher()
@@ -84,17 +67,15 @@ def motor_control(left_speed_out,right_speed_out):
 def scan_publisher():
     result = BrickPiUpdateValues()
     if not result :
-	range = BrickPi.Sensor[PORT_1] 
+	range = BrickPi.Sensor[PORT_1]
         us = rospy.Publisher('scan', UInt16)
         us.publish(UInt16(range))
 	rospy.loginfo ("SCAN:" + str(range))
 
 if __name__ == '__main__':
     try:
-    	rospy.init_node('MockBotBrickPiBaseController')
+    	rospy.init_node('RobotBaseController')
 	vel_cmd_listener()
 	time.sleep(.01)
     	rospy.spin()
     except rospy.ROSInterruptException: pass
-
-
