@@ -3,7 +3,7 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <box size="0.16 0.16 0.12"/>
+        <box size="0.19 0.15 0.07"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0.085"/>
       <material name="white">
@@ -11,11 +11,11 @@
       </material>
     </visual>
   </link>
-  
+
   <link name="lwheel">
     <visual>
       <geometry>
-        <cylinder length="0.008" radius="0.046"/>
+        <cylinder length="0.02" radius="0.04"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="black">
@@ -23,17 +23,17 @@
       </material>
     </visual>
   </link>
-  
-  <joint name="base_to_lwheel" type="fixed">
+
+ <joint name="base_to_lwheel" type="fixed">
     <parent link="base_link"/>
     <child link="lwheel"/>
-    <origin xyz="0 0.115 0.046" rpy="1.5708 0 0"/>
+    <origin xyz="0 0.085 0.07" rpy="1.5708 0 0"/>
   </joint>
-  
+
   <link name="rwheel">
     <visual>
       <geometry>
-        <cylinder length="0.008" radius="0.046"/>
+        <cylinder length="0.02" radius="0.04"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="black">
@@ -41,65 +41,37 @@
       </material>
     </visual>
   </link>
-  
-  <joint name="base_to_rwheel" type="fixed">
+
+ <joint name="base_to_rwheel" type="fixed">
     <parent link="base_link"/>
     <child link="rwheel"/>
-    <origin xyz="0 -0.115 0.046" rpy="-1.5708 0 0"/>
+    <origin xyz="0 -0.085 0.07" rpy="-1.5708 0 0"/>
   </joint>
-  
-  <link name="fwheel_attach">
-    <visual>
-      <geometry>
-        <cylinder length="0.060" radius="0.023"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="0.13 0 0.08"/>
-      <material name="white">
-        <color rgba="1 1 1 1"/>
-      </material>
-    </visual>
-  </link>
-  
-  <joint name="base_to_fattach" type="fixed">
-    <parent link="base_link"/>
-    <child link="fwheel_attach"/>
-    <origin xyz="0 0 0" rpy="0 0 0"/>
-  </joint>
-  
-  <link name="fwheel">
-    <visual>
-      <geometry>
-        <cylinder length="0.005" radius="0.020"/>
-      </geometry>
-      <origin rpy="1.578 0 0" xyz="0 0 0"/>
-      <material name="black">
-        <color rgba="0 0 0 1"/>
-      </material>
-    </visual>
-  </link>
-  
-  <joint name="base_to_fwheel" type="fixed">
-    <parent link="base_link"/>
-    <child link="fwheel"/>
-    <origin xyz="0.13 0 0.02" rpy="0 0 0"/>
-  </joint>
-  
-  <link name="scanner">
-    <visual>
-      <geometry>
-        <box size="0.015 0.045 0.015"/>
-      </geometry>
-      <origin rpy="0 0 0" xyz="0.022 0 0.015"/>
-      <material name="black">
-        <color rgba="0 0 0 1"/>
-      </material>
-    </visual>
-  </link>
-  
-  <joint name="base_to_scanner" type="fixed">
-    <parent link="base_link"/>
-    <child link="scanner"/>
-    <origin xyz="0.105 0 0.22" rpy="0 0 0"/>
 
-  
+  <link name="laser_link">
+    <inertial>
+      <mass value="0.00001"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 1.570795" xyz="0 0 0"/>
+      <geometry>
+     <box size="0.015 0.045 0.015"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.035"/>
+      <geometry>
+        <cylinder length="0.07" radius="0.02"/>
+      </geometry>
+    </collision>
+  </link>
+
+<joint name="laser_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0.1 0 0"/>
+    <parent link="base_link"/>
+    <child link="laser_link"/>
+  </joint>
+
 </robot>
