@@ -15,7 +15,7 @@
   </node>
   <node pkg="tf" type="static_transform_publisher" name="base_frame_2_laser_link" args="0 0 0 0 0 0 /base_frame /laser 100"/>
 
-  <include file="$(find burf_robot)/launch/default_mapping2.launch">
+  <include file="$(find burf_robot)/launch/default_mapping.launch">
     <arg name="base_frame" value="base_frame"/>
     <arg name="odom_frame" value="base_frame"/>
   </include>

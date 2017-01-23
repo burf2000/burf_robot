@@ -2,7 +2,7 @@
 
 <launch>
   <master auto="start"/>
-  <include file="$(find burf_robot)/launch/hector_hokuyo.launch"/>
+  <include file="$(find burf_robot)/launch/hector_robot.launch"/>
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find burf_robot)/param/costmap_common_params.yaml" command="load" ns="global_costmap"/>
     <rosparam file="$(find burf_robot)/param/costmap_common_params.yaml" command="load" ns="local_costmap"/>
@@ -11,5 +11,5 @@
     <rosparam file="$(find burf_robot)/param/base_local_planner_params.yaml" command="load"/>
     <rosparam file="$(find burf_robot)/param/move_base_params.yaml" command="load"/>
   </node>
- 
+
 </launch>
