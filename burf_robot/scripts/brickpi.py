@@ -56,9 +56,9 @@ def vel_cmd_listener():
 def motor_control(left_speed_out,right_speed_out):
     rospy.loginfo("LSPEED:"+ str(left_speed_out) + " RSPEED:" + str(right_speed_out))
     rospy.loginfo("LSPEED:"+ str(left_speed_out) + " RSPEED:" + str(right_speed_out))
-    BrickPi.MotorSpeed[RF_WHEEL] = int(-right_speed_out*PWRDIV)
+    BrickPi.MotorSpeed[RF_WHEEL] = int(+right_speed_out*PWRDIV)
     rospy.loginfo("RF:"+str(BrickPi.MotorSpeed[RF_WHEEL]))
-    BrickPi.MotorSpeed[LF_WHEEL] = int(-left_speed_out*PWRDIV)
+    BrickPi.MotorSpeed[LF_WHEEL] = int(+left_speed_out*PWRDIV)
     rospy.loginfo("LF:"+str(BrickPi.MotorSpeed[LF_WHEEL]))
     BrickPiUpdateValues()
     time.sleep(.01)
