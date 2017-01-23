@@ -2,13 +2,20 @@
 #
 #  http://www.ros.org/wiki/move_base
 #
+#Determines whether or not to shutdown the costmaps of the node when move_base is in an inactive state default: false
 shutdown_costmaps: false
 
+#The rate in Hz at which to run the control loop and send velocity commands to the base.  default: 20.0
 controller_frequency: 5.0
+#How long the controller will wait in seconds without receiving a valid control before space-clearing operations are performed. default: 15.0
 controller_patience: 3.0
 
+#The rate in Hz at which to run the global planning loop. If the frequency is set to 0.0, the global planner will only run when a new goal is received or the local planner reports that its path is blocked. New in navigation 1.6.0 default is 0.0
 planner_frequency: 1.0
+#How long the planner will wait in seconds in an attempt to find a valid plan before space-clearing operations are performed. default 5
 planner_patience: 5.0
 
+#How long in seconds to allow for oscillation before executing recovery behaviors. A value of 0.0 corresponds to an infinite timeout. default: 0.0)
 oscillation_timeout: 10.0
+#How far in meters the robot must move to be considered not to be oscillating. Moving this far resets the timer counting up to the ~oscillation_timeout default 0.5 
 oscillation_distance: 0.2
