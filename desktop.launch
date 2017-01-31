@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-
-<launch>
-  <node pkg="rviz" type="rviz" name="rviz" args="-d /home/burf2000/ROS_Robot/ROS_ROBOT.rviz" required="true"/>
-<param name="robot_model" textfile="/home/burf2000/ROS_Robot/robot.urdf" />
-</launch>
-
