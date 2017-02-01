@@ -20,6 +20,7 @@
   <include file="$(find burf_robot)/launch/default_mapping.launch">
     <arg name="base_frame" value="base_frame"/>
     <arg name="odom_frame" value="base_frame"/>
+    <arg name="base_link" value="base_link"/>
   </include>
   <include file="$(find hector_geotiff)/launch/geotiff_mapper.launch">
     <arg name="trajectory_source_frame_name" value="/base_frame"/>
