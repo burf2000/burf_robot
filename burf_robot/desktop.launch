@@ -2,5 +2,5 @@
 
 <launch>
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find burf_robot)/main.rviz" required="true"/>
-<param name="robot_model" textfile="$(find burf_robot)/robot.urdf" />
+<param name="robot_model" textfile="robot.urdf" />
 </launch>
