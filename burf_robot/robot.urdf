@@ -1,6 +1,6 @@
 <robot name="test_robot">
 
-  <link name="base_link">
+  <link name="base_frame">
     <visual>
       <geometry>
         <box size="0.20 0.20 0.07"/>
@@ -29,8 +29,8 @@
     </visual>
   </link>
 
- <joint name="base_to_lwheel" type="fixed">
-    <parent link="base_link"/>
+ <joint name="base_to_lwheel" type="continuous">
+    <parent link="base_frame"/>
     <child link="lwheel"/>
     <origin xyz="0 0.085 0.07" rpy="1.5708 0 0"/>
   </joint>
@@ -47,8 +47,8 @@
     </visual>
   </link>
 
- <joint name="base_to_rwheel" type="fixed">
-    <parent link="base_link"/>
+ <joint name="base_to_rwheel" type="continuous">
+    <parent link="base_frame"/>
     <child link="rwheel"/>
     <origin xyz="0 -0.085 0.07" rpy="-1.5708 0 0"/>
   </joint>
@@ -64,7 +64,7 @@
 
 <joint name="laser_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.0 0.0 0.125"/>
-    <parent link="base_link"/>
+    <parent link="base_frame"/>
     <child link="laser"/>
   </joint>
 
@@ -82,7 +82,7 @@
 
 <joint name="ultrasonic_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.09 0.0 0.13"/>
-    <parent link="base_link"/>
+    <parent link="base_frame"/>
     <child link="ultrasonic"/>
   </joint>
 
