@@ -1,4 +1,4 @@
-<robot name="test_robot">
+<robot name="robot_model">
 
   <link name="base_frame">
     <visual>
