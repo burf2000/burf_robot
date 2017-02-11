@@ -3,7 +3,7 @@
   <rosparam param="ticks_meter">100</rosparam>
 
   <!-- LEFT WHEEL PID -->
-  <node pkg="differential-drive" type="pid_velocity.py" name="lpid_velocity" output="screen">
+  <node pkg="burf_robot" type="pid_velocity.py" name="lpid_velocity" output="screen">
       <remap from="wheel" to="lwheel"/>
       <remap from="motor_cmd" to="lmotor"/>
       <remap from="wheel_vtarget" to="lwheel_vtarget"/>
@@ -34,7 +34,7 @@
   </node>
 
   <!-- RIGHT WHEEL PID -->
-  <node pkg="differential-drive" type="pid_velocity.py" name="rpid_velocity" output="screen">
+  <node pkg="burf_robot" type="pid_velocity.py" name="rpid_velocity" output="screen">
       <remap from="wheel" to="rwheel"/>
       <remap from="motor_cmd" to="rmotor"/>
       <remap from="wheel_vtarget" to="rwheel_vtarget"/>
@@ -65,9 +65,9 @@
   </node>
 
   <!-- VIRTUAL JOYSTICK --> 
-  <node pkg="differential-drive" type="virtual_joystick.py" name="virtual_joystick" output="screen"/>
+  <node pkg="burf_robot" type="virtual_joystick.py" name="virtual_joystick" output="screen"/>
 
-  <node pkg="differential-drive" type="twist_to_motors.py" name="twist_to_motors" output="screen">
+  <node pkg="burf_robot" type="twist_to_motors.py" name="twist_to_motors" output="screen">
     <rosparam param="base_width">0.16</rosparam>
   </node>
 </launch>
