@@ -1,0 +1,73 @@
+<launch>
+
+  <rosparam param="ticks_meter">100</rosparam>
+
+  <!-- LEFT WHEEL PID -->
+  <node pkg="differential-drive" type="pid_velocity.py" name="lpid_velocity" output="screen">
+      <remap from="wheel" to="lwheel"/>
+      <remap from="motor_cmd" to="lmotor"/>
+      <remap from="wheel_vtarget" to="lwheel_vtarget"/>
+      <remap from="wheel_vel" to="lwheel_vel"/>
+      
+	  <!--PID tuning constants -->
+	  <rosparam param="Kp">200</rosparam>
+      <rosparam param="Ki">200</rosparam>
+      <rosparam param="Kd">0</rosparam>
+
+	  <!-- encoder output min max vals -->
+	  <rosparam param="encoder_min">-255</rosparam>	
+	  <rosparam param="encoder_max">255</rosparam>
+	  
+	  <!-- arbitrary power output to motors in min/max -->
+	  <rosparam param="out_min">-255</rosparam>
+      <rosparam param="out_max">255</rosparam>
+
+	  <!-- misc, rate of publication for mtr cmmnds -->
+      <rosparam param="rate">30</rosparam> 
+      <rosparam param="timeout_ticks">4</rosparam>
+      <rosparam param="rolling_pts">5</rosparam>
+
+	  <!-- CUSTOM - original motor float max that pid_velocity outputs. -->
+	  <rosparam param="orig_motor_float_max">130</rosparam>
+	  <rosparam param="orig_motor_float_min">-130</rosparam>
+  
+  </node>
+
+  <!-- RIGHT WHEEL PID -->
+  <node pkg="differential-drive" type="pid_velocity.py" name="rpid_velocity" output="screen">
+      <remap from="wheel" to="rwheel"/>
+      <remap from="motor_cmd" to="rmotor"/>
+      <remap from="wheel_vtarget" to="rwheel_vtarget"/>
+      <remap from="wheel_vel" to="rwheel_vel"/>
+	  
+	  <!--PID tuning constants -->
+      <rosparam param="Kp">200</rosparam>
+      <rosparam param="Ki">200</rosparam>
+      <rosparam param="Kd">0</rosparam>
+   	  
+	  <!-- encoder output min max vals -->
+	  <rosparam param="encoder_min">-255</rosparam>	
+	  <rosparam param="encoder_max">255</rosparam>
+
+	  <!-- arbitrary power output to motors in min/max -->
+	  <rosparam param="out_min">-255</rosparam>
+      <rosparam param="out_max">255</rosparam>
+
+	  <!-- misc, rate of publication for mtr cmmnds -->
+      <rosparam param="rate">30</rosparam>
+      <rosparam param="timeout_ticks">4</rosparam>
+      <rosparam param="rolling_pts">5</rosparam>
+
+	  <!-- CUSTOM - original motor float max that pid_velocity outputs. -->
+	  <rosparam param="orig_motor_float_max">130</rosparam>
+	  <rosparam param="orig_motor_float_min">-130</rosparam>
+  
+  </node>
+
+  <!-- VIRTUAL JOYSTICK --> 
+  <node pkg="differential-drive" type="virtual_joystick.py" name="virtual_joystick" output="screen"/>
+
+  <node pkg="differential-drive" type="twist_to_motors.py" name="twist_to_motors" output="screen">
+    <rosparam param="base_width">0.16</rosparam>
+  </node>
+</launch>
