@@ -1,6 +1,12 @@
 <launch>
+<!-- Starting robot state publisher -->
 
-  <rosparam param="ticks_meter">100</rosparam>
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+
+    <param name="publish_frequency" type="double" value="5.0" />
+
+  </node>  
+<rosparam param="ticks_meter">100</rosparam>
 
   <!-- LEFT WHEEL PID -->
   <node pkg="differential_drive" type="pid_velocity.py" name="lpid_velocity" output="screen">
