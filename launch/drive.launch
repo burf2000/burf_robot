@@ -1,7 +1,7 @@
 <launch>
 <!-- Starting robot state publisher -->
 <rosparam param="ticks_meter">100</rosparam>
-
+<rosparam param="base_width">0.16</rosparam>
   <!-- LEFT WHEEL PID -->
   <node pkg="differential_drive" type="pid_velocity.py" name="lpid_velocity" output="screen">
       <remap from="wheel" to="lwheel"/>
@@ -63,9 +63,8 @@
 	  <rosparam param="orig_motor_float_min">-130</rosparam>
   
   </node>
-
-  <node pkg="differential_drive" type="twist_to_motors.py" name="twist_to_motors" output="screen">
-    <rosparam param="base_width">0.16</rosparam>
-  </node>
+	
+  <node pkg="differential_drive" type="twist_to_motors.py" name="twist_to_motors" output="screen"/>
+  <node pkg="differential_drive" type="diff_tf.py" name="diff_tf" output="screen"/> 
   
 </launch>
