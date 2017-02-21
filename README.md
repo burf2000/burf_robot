@@ -5,8 +5,9 @@ robot.launch is to be ran on the robot (in launch directory)
 
 desktop.launch to be ran on the PC (runs rviz)
 
-issues
-Collision does not seem to be working too well.
+##issues
 
-I may have the +- speed wrong on the brickpi script
+-Collision does not seem to be working too well.
+
+-I may have the +- speed wrong on the brickpi script
 
