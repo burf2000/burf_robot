@@ -11,10 +11,16 @@ TrajectoryPlannerROS:
   min_vel_theta: -1.5  # -1.0 The minimum rotational velocity allowed for the base in radians/sec default -1
   min_in_place_vel_theta: 1.0 # 0.6 The minimum rotational velocity allowed for the base while performing in-place rotations in radians/sec default 0.4
   
-  acc_lim_theta: 3.2
-  acc_lim_x: 2.5
-  acc_lim_y: 2.5
+  acc_lim_theta: 1.0
+  acc_lim_x: 1
+  acc_lim_y: 0
+
+  # Goal Tolerance Parameters
+  yaw_goal_tolerance: 0.25 # The tolerance in radians for the controller in yaw/rotation when achieving its goal  default: 0.05
+  xy_goal_tolerance: 0.25 # The tolerance in meters for the controller in the x & y distance when achieving a goal default: 0.10
 
 # Differential-drive robot configuration
   holonomic_robot: false # Determines whether velocity commands are generated for a holonomic or non-holonomic robot. For holonomic robots, strafing velocity commands may be issued to the base. For non-holonomic robots, no strafing velocity commands will be issued. default true
 
+
+  meter_scoring: true
