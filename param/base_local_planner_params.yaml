@@ -11,32 +11,10 @@ TrajectoryPlannerROS:
   min_vel_theta: -1.5  # -1.0 The minimum rotational velocity allowed for the base in radians/sec default -1
   min_in_place_vel_theta: 1.0 # 0.6 The minimum rotational velocity allowed for the base while performing in-place rotations in radians/sec default 0.4
   
-  acc_lim_x: 0.6 # The x acceleration limit of the robot in meters/sec^2 default  2.5
-  acc_lim_theta: 1.0 # The rotational acceleration limit of the robot in radians/sec^2 default 3.2
-
-# Goal Tolerance Parameters
-  yaw_goal_tolerance: 3.14 # The tolerance in radians for the controller in yaw/rotation when achieving its goal  default: 0.05
-  xy_goal_tolerance: 0.15 # The tolerance in meters for the controller in the x & y distance when achieving a goal default: 0.10
-
-# Forward Simulation Parameters
-  sim_time: 3.0 # The amount of time to forward-simulate trajectories in seconds  default: 1.0
-  vx_samples: 6 # The number of samples to use when exploring the x velocity space default: 3
-  vtheta_samples: 20 # The number of samples to use when exploring the theta velocity space default: 20
-
-# Trajectory Scoring Parameters
-  meter_scoring: true # whether the gdist_scale and pdist_scale parameters should assume that goal_distance and path_distance are expressed in units of meters or cells. Cells are assumed by default. default false
-  pdist_scale: 0.6 # The weighting for how much the controller should stay close to the path it was given default: 0.6
-  gdist_scale: 0.8 # The weighting for how much the controller should attempt to reach its local goal, also controls speed default default: 0.8
-  occdist_scale: 0.01 # The weighting for how much the controller should attempt to avoid obstacles default 0.01
-  heading_lookahead: 0.325 # How far to look ahead in meters when scoring different in-place-rotation trajectories default: 0.32
-  dwa: true # Whether to use the Dynamic Window Approach (DWA)_ or whether to use Trajectory Rollout (NOTE: In our experience DWA worked as well as Trajectory Rollout and is computationally less expensive. It is possible that robots with extremely poor acceleration limits could gain from running Trajectory Rollout, but we recommend trying DWA first.) default true
-
-# Oscillation Prevention Parameters
-  oscillation_reset_dist: 0.05 # How far the robot must travel in meters before oscillation flags are reset default 0.05
+  acc_lim_theta: 3.2
+  acc_lim_x: 2.5
+  acc_lim_y: 2.5
 
 # Differential-drive robot configuration
   holonomic_robot: false # Determines whether velocity commands are generated for a holonomic or non-holonomic robot. For holonomic robots, strafing velocity commands may be issued to the base. For non-holonomic robots, no strafing velocity commands will be issued. default true
-  max_vel_y: 0.0 # The maximum y velocity for the robot in m/s default: 0.1
-  min_vel_y: 0.0 # The minimum y velocity for the robot in m/s defaul default: -0.1
-  acc_lim_y: 0.0 # The y acceleration limit of the robot in meters/sec^2 default 2.5
-  vy_samples: 0 # The number of samples to use when exploring the y velocity space default 10
+
