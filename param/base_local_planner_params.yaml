@@ -37,4 +37,3 @@ TrajectoryPlannerROS:
 # Differential-drive robot configuration
   holonomic_robot: false # Determines whether velocity commands are generated for a holonomic or non-holonomic robot. For holonomic robots, strafing velocity commands may be issued to the base. For non-holonomic robots, no strafing velocity commands will be issued. default true
   
-  meter_scoring: true

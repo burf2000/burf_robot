@@ -11,7 +11,7 @@ map_type: voxel # What map type to use. "voxel" or "costmap" are the supported t
 origin_z: 0.0 # The z origin of the map in meters. default 0.0
 z_resolution: 0.2 # The z resolution of the map in meters/cell. default 0.2
 z_voxels: 2 # The number of voxels to in each vertical column, the height of the grid is z_resolution * z_voxels. default 10
-publish_voxel_map: true # Whether or not to publish the underlying voxel grid for visualization purposes. default false
+publish_voxel_map: false # Whether or not to publish the underlying voxel grid for visualization purposes. default false
 
 observation_sources: scan bump # A list of observation source names separated by spaces. This defines each of the <source_name> namespaces defined below.
 
