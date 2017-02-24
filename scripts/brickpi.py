@@ -43,8 +43,8 @@ BrickPi.SensorType[PORT_1] = TYPE_SENSOR_ULTRASONIC_CONT
 BrickPiSetupSensors()
 
 def cmd_vel_callback(cmd_vel):
-    left_speed_out = cmd_vel.linear.x + cmd_vel.angular.z*ROBOT_WIDTH/2
-    right_speed_out = cmd_vel.linear.x - cmd_vel.angular.z*ROBOT_WIDTH/2
+    left_speed_out = cmd_vel.linear.x - cmd_vel.angular.z*ROBOT_WIDTH/2
+    right_speed_out = cmd_vel.linear.x + cmd_vel.angular.z*ROBOT_WIDTH/2
     v = cmd_vel.linear.x        # speed m/s
     theta = cmd_vel.angular.z      # angle rad/s
     rospy.loginfo("VEL_CMD_CB: v:" + str(v) + ", theta:" + str(theta))
