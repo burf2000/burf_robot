@@ -1,8 +1,8 @@
 local_costmap:
    global_frame: /map # The global frame for the costmap to operate in. default /map
    robot_base_frame: /scanmatcher_frame # The name of the frame for the base link of the robot. default base_link
-   update_frequency: 5.0 # The frequency in Hz for the map to be updated. default: 5.0
-   publish_frequency: 2.0 # The frequency in Hz for the map to be publish display information. default 0.0
+   update_frequency: 1.0 # The frequency in Hz for the map to be updated. default: 5.0
+   publish_frequency: 5.0 # The frequency in Hz for the map to be publish display information. default 0.0
    static_map: false # Whether or not to use the static map to initialize the costmap. If the rolling_window parameter is set to true, this parameter must be set to false.  default: true
    rolling_window: true # Whether or not to use a rolling window version of the costmap. If the static_map parameter is set to true, this parameter must be set to false.
    width: 4.0 # The width of the map in meters. default 10

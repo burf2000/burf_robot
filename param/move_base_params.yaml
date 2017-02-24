@@ -19,3 +19,7 @@ planner_patience: 5.0
 oscillation_timeout: 10.0
 #How far in meters the robot must move to be considered not to be oscillating. Moving this far resets the timer counting up to the ~oscillation_timeout default 0.5 
 oscillation_distance: 0.2
+
+conservative_reset_dist: 0.10 #distance from an obstacle at which it will unstuck itself
+
+

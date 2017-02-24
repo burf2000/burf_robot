@@ -10,6 +10,7 @@
     <rosparam file="$(find burf_robot)/param/local_costmap_params.yaml" command="load"/>
     <rosparam file="$(find burf_robot)/param/global_costmap_params.yaml" command="load"/>
     <rosparam file="$(find burf_robot)/param/base_local_planner_params.yaml" command="load"/>
+    <rosparam file="$(find burf_robot)/param/move_base_params.yaml" command="load"/>
   </node>
 
 </launch>

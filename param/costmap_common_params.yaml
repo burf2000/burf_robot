@@ -6,6 +6,8 @@ raytrace_range: 3.0 # The maximum range in meters at which to raytrace out obsta
 footprint: [ [0.08, 0.08], [-0.08, 0.08], [-0.08, -0.08], [0.08, -0.08] ] # SThe footprint of the robot specified in the robot_base_frame coordinate frame as a list in the format: [ [x1, y1], [x2, y2], ...., [xn, yn] ]. The footprint specification assumes the center point of the robot is at (0.0, 0.0) in the robot_base_frame and that the points are specified in meters, both clockwise and counter-clockwise orderings of points are supported.
 inflation_radius: 0.2 # The radius in meters to which the map inflates obstacle cost values. default 0.55
 
+transform_tolerance: 0.2 #Specifies the delay in transform (tf) data that is tolerable in seconds.
+
 # voxel map configuration; z-voxels 0 are filled by bumpers and 1 by laser scan (kinect)
 map_type: costmap # What map type to use. "voxel" or "costmap" are the supported types, with the difference between them being a 3D-view of the world vs. a 2D-view of the world.
 #origin_z: 0.0 # The z origin of the map in meters. default 0.0
@@ -14,6 +16,5 @@ map_type: costmap # What map type to use. "voxel" or "costmap" are the supported
 #publish_voxel_map: false # Whether or not to publish the underlying voxel grid for visualization purposes. default false
 
 observation_sources: scan #bump # A list of observation source names separated by spaces. This defines each of the <source_name> namespaces defined below.
-
-scan: {data_type: LaserScan, topic: scan, marking: true, clearing: true, min_obstacle_height: 0.0, max_obstacle_height: 0.2}
+scan: {data_type: LaserScan, topic: scan, marking: true, clearing: true} # min_obstacle_height: 0.0, max_obstacle_height: 0.2
 #bump: {data_type: PointCloud2, topic: mobile_base/sensors/bumper_pointcloud, marking: true, clearing: false, min_obstacle_height: 0.0, max_obstacle_height: 0.15}
