@@ -13,7 +13,7 @@ map_type: costmap # What map type to use. "voxel" or "costmap" are the supported
 #z_voxels: 2 # The number of voxels to in each vertical column, the height of the grid is z_resolution * z_voxels. default 10
 #publish_voxel_map: false # Whether or not to publish the underlying voxel grid for visualization purposes. default false
 
-observation_sources: scan bump # A list of observation source names separated by spaces. This defines each of the <source_name> namespaces defined below.
+observation_sources: scan #bump # A list of observation source names separated by spaces. This defines each of the <source_name> namespaces defined below.
 
-scan: {data_type: LaserScan, topic: scan, marking: true, clearing: true, min_obstacle_height: 0.25, max_obstacle_height: 0.35}
-bump: {data_type: PointCloud2, topic: mobile_base/sensors/bumper_pointcloud, marking: true, clearing: false, min_obstacle_height: 0.0, max_obstacle_height: 0.15}
+scan: {data_type: LaserScan, topic: scan, marking: true, clearing: true, min_obstacle_height: 0.0, max_obstacle_height: 0.2}
+#bump: {data_type: PointCloud2, topic: mobile_base/sensors/bumper_pointcloud, marking: true, clearing: false, min_obstacle_height: 0.0, max_obstacle_height: 0.15}
