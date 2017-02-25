@@ -9,7 +9,7 @@ TrajectoryPlannerROS:
 
   max_vel_theta:  1.5  # 1.0 The maximum rotational velocity allowed for the base in radians/sec default 1
   min_vel_theta: -1.5  # -1.0 The minimum rotational velocity allowed for the base in radians/sec default -1
-  min_in_place_vel_theta: 0.6 # 0.6 The minimum rotational velocity allowed for the base while performing in-place rotations in radians/sec default 0.4
+  min_in_place_vel_theta: 1.0 # 0.6 The minimum rotational velocity allowed for the base while performing in-place rotations in radians/sec default 0.4
   
   acc_lim_theta: 1.0 # The rotational acceleration limit of the robot in radians/sec^2 default 3.2
   acc_lim_x: 0.6 # The x acceleration limit of the robot in meters/sec^2 default  2.5
