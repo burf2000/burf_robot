@@ -3,7 +3,7 @@
   <link name="base_frame">
     <visual>
       <geometry>
-        <box size="0.16 0.16 0.07"/>
+        <box size="1.10 0.80 0.15"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0.085"/>
       <material name="white">
@@ -12,7 +12,7 @@
     </visual>
     <collision>
       <geometry>
-        <box size="0.20 0.20 0.07"/>
+        <box size="1.10 0.90 0.15"/>
       </geometry>
     </collision>
   </link>
@@ -20,7 +20,7 @@
   <link name="lwheel">
     <visual>
       <geometry>
-        <cylinder length="0.02" radius="0.04"/>
+        <cylinder length="0.03" radius="0.105"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="black">
@@ -32,13 +32,13 @@
  <joint name="base_to_lwheel" type="fixed">
     <parent link="base_frame"/>
     <child link="lwheel"/>
-    <origin xyz="0 0.085 0.07" rpy="1.5708 0 0"/>
+    <origin xyz="0 0.42 0.06" rpy="1.5708 0 0"/>
   </joint>
 
   <link name="rwheel">
     <visual>
       <geometry>
-        <cylinder length="0.02" radius="0.04"/>
+        <cylinder length="0.03" radius="0.105"/>
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <material name="black">
@@ -50,20 +50,20 @@
  <joint name="base_to_rwheel" type="fixed">
     <parent link="base_frame"/>
     <child link="rwheel"/>
-    <origin xyz="0 -0.085 0.07" rpy="-1.5708 0 0"/>
+    <origin xyz="0 -0.42 0.06" rpy="-1.5708 0 0"/>
   </joint>
 
   <link name="laser">
     <visual>
       <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-     <cylinder length="0.01" radius="0.03"/>
+     <cylinder length="0.03" radius="0.08"/>
       </geometry>
     </visual>
   </link>
 
 <joint name="laser_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.0 0.0 0.125"/>
+    <origin rpy="0 0 0" xyz="-0.5 0.0 0.80"/>
     <parent link="base_frame"/>
     <child link="laser"/>
   </joint>
