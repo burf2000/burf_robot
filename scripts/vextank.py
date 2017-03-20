@@ -71,6 +71,7 @@ def motor_control(left_speed_out, right_speed_out):
 
 
 def scan_publisher():
+    print("fire")
     result = BrickPiUpdateValues()
     if not result:
         range = BrickPi.Sensor[PORT_1]
