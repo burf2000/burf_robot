@@ -74,16 +74,16 @@ def scan_publisher():
     result = BrickPiUpdateValues()
     if not result:
         # Publisher for left and right wheel encoder values
-    Left_Encoder = rospy.Publisher('lwheel', Int64, queue_size=10)
-    Right_Encoder = rospy.Publisher('rwheel', Int64, queue_size=10)
 
-    Left_Encoder.publish((BrickPi.Encoder[LF_WHEEL])
-    Right_Encoder.publish((BrickPi.Encoder[RF_WHEEL])
-
-	range=BrickPi.Sensor[PORT_1]
-        us=rospy.Publisher('scan', UInt16)
+	range = BrickPi.Sensor[PORT_1]
+        us = rospy.Publisher('scan', UInt16)
         us.publish(UInt16(range))
 	rospy.loginfo("SCAN:" + str(range))
+
+    Left_Encoder = rospy.Publisher('lwheel', Int64, queue_size=10)
+    Right_Encoder = rospy.Publisher('rwheel', Int64, queue_size=10)
+    Left_Encoder.publish((BrickPi.Encoder[LF_WHEEL])
+    Right_Encoder.publish((BrickPi.Encoder[RF_WHEEL])
 
 if __name__ == '__main__':
     try:
