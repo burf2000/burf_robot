@@ -3,7 +3,9 @@
 <launch>
   <master auto="start"/>
   <include file="$(find burf_robot)/launch/hector_robot.launch"/>
- 
+  <include file="$(find burf_robot)/launch/drive.launch"/>
+
+
   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
     <rosparam file="$(find burf_robot)/param/costmap_common_params.yaml" command="load" ns="global_costmap"/>
     <rosparam file="$(find burf_robot)/param/costmap_common_params.yaml" command="load" ns="local_costmap"/>

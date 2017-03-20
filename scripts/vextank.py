@@ -16,8 +16,8 @@ from geometry_msgs.msg import Twist
 
 #Model dependend settings
 PI=3.141
-ROBOT_WIDTH=0.16
-WHEEL_DIAMETER=0.055
+ROBOT_WIDTH=0.9
+WHEEL_DIAMETER=0.105
 WHEEL_RADIUS=WHEEL_DIAMETER/2
 WHEEL_PERIMETER=2*PI*WHEEL_RADIUS
 
@@ -25,8 +25,8 @@ WHEEL_PERIMETER=2*PI*WHEEL_RADIUS
 #9.0V = 120 RPM
 #7.5V = 80 RPM
 # with load 60-80 rpm is a good average
-MAX_RPM=80.0
-RPS=MAX_RPM/60.0
+MAX_RPM=42.6 #100.0
+RPS=MAX_RPM/30.0
 
 MPS=RPS*WHEEL_PERIMETER
 PWRDIV=1000*RPS
@@ -67,6 +67,13 @@ def motor_control(left_speed_out,right_speed_out):
 def scan_publisher():
     result = BrickPiUpdateValues()
     if not result :
+        #Publisher for left and right wheel encoder values
+    Left_Encoder = rospy.Publisher('lwheel',Int64,queue_size = 10)
+    Right_Encoder = rospy.Publisher('rwheel',Int64,queue_size = 10)
+
+    Left_Encoder.publish((BrickPi.Encoder[LF_WHEEL])
+    Right_Encoder.publish((BrickPi.Encoder[RF_WHEEL])
+
 	range = BrickPi.Sensor[PORT_1]
         us = rospy.Publisher('scan', UInt16)
         us.publish(UInt16(range))
