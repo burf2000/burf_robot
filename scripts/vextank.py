@@ -78,10 +78,10 @@ def scan_publisher():
         us.publish(UInt16(range))
         rospy.loginfo("SCAN:" + str(range))
 
-        left_encoder = rospy.Publisher('lwheel', UInt64, queue_size=10)
-        right_encoder = rospy.Publisher('rwheel', UInt64, queue_size=10)
-        left_encoder.publish(UInt64(BrickPi.Encoder[LF_WHEEL]))
-        right_encoder.publish(UInt64(BrickPi.Encoder[RF_WHEEL]))
+        left_encoder = rospy.Publisher('lwheel', UInt16, queue_size=10)
+        right_encoder = rospy.Publisher('rwheel', UInt16, queue_size=10)
+        left_encoder.publish(UInt16(BrickPi.Encoder[LF_WHEEL]))
+        right_encoder.publish(UInt16(BrickPi.Encoder[RF_WHEEL]))
 
 if __name__ == '__main__':
     try:
