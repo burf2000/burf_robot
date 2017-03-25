@@ -1,6 +1,6 @@
 <launch>
 <!-- Starting robot state publisher -->
-<rosparam param="ticks_meter">100</rosparam>
+<rosparam param="ticks_meter">6000</rosparam>
 <rosparam param="base_width">0.16</rosparam>
   <!-- LEFT WHEEL PID -->
   <node pkg="differential_drive" type="pid_velocity.py" name="lpid_velocity" output="screen">
@@ -46,8 +46,8 @@
       <rosparam param="Kd">0</rosparam>
    	  
 	  <!-- encoder output min max vals -->
-	  <rosparam param="encoder_min">-255</rosparam>	
-	  <rosparam param="encoder_max">255</rosparam>
+	  <rosparam param="encoder_min">-30000</rosparam>	
+	  <rosparam param="encoder_max">30000</rosparam>
 
 	  <!-- arbitrary power output to motors in min/max -->
 	  <rosparam param="out_min">-255</rosparam>
@@ -57,10 +57,6 @@
       <rosparam param="rate">30</rosparam>
       <rosparam param="timeout_ticks">4</rosparam>
       <rosparam param="rolling_pts">5</rosparam>
-
-	  <!-- CUSTOM - original motor float max that pid_velocity outputs. -->
-	  <rosparam param="orig_motor_float_max">130</rosparam>
-	  <rosparam param="orig_motor_float_min">-130</rosparam>
   
   </node>
 	

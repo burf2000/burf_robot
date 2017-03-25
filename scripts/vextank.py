@@ -94,7 +94,7 @@ def scan_publisher():
 
         l = int(BrickPi.Encoder[LF_WHEEL] % 30000)
         r = int(BrickPi.Encoder[RF_WHEEL] % 30000)
-
+        rospy.loginfo("ODOM L:" + str(l) + " R: " + str(r) )
         left_encoder.publish(l)
         right_encoder.publish(r)
 
