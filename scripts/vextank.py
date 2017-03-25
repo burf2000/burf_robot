@@ -82,10 +82,10 @@ def motor_control(left_speed_out, right_speed_out):
 def scan_publisher():
     result = BrickPiUpdateValues()
     if not result:
-        range = BrickPi.Sensor[PORT_1]
-        us = rospy.Publisher('scan', UInt16)
-        us.publish(UInt16(range))
-        rospy.loginfo("SCAN:" + str(range))
+        # range = BrickPi.Sensor[PORT_1]
+        # us = rospy.Publisher('scan', UInt16)
+        # us.publish(UInt16(range))
+        # rospy.loginfo("SCAN:" + str(range))
 
         left_encoder = rospy.Publisher('lwheel', Int16, queue_size=10)
         right_encoder = rospy.Publisher('rwheel', Int16, queue_size=10)
