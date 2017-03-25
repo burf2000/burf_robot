@@ -87,8 +87,8 @@ def scan_publisher():
         us.publish(UInt16(range))
         rospy.loginfo("SCAN:" + str(range))
 
-        left_encoder = rospy.Publisher('lwheel', Int64, queue_size=10)
-        right_encoder = rospy.Publisher('rwheel', Int64, queue_size=10)
+        left_encoder = rospy.Publisher('lwheel', Int16, queue_size=10)
+        right_encoder = rospy.Publisher('rwheel', Int16, queue_size=10)
         left_encoder.publish(BrickPi.Encoder[LF_WHEEL])
         right_encoder.publish(BrickPi.Encoder[RF_WHEEL])
 
