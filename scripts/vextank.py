@@ -39,11 +39,11 @@ LF_WHEEL = PORT_D
 BrickPiSetup()
 BrickPi.MotorEnable[RF_WHEEL] = 1
 BrickPi.MotorEnable[LF_WHEEL] = 1
+BrickPi.Encoder[RF_WHEEL] = 0
+BrickPi.Encoder[RF_WHEEL] = 0
+
 BrickPi.SensorType[PORT_1] = TYPE_SENSOR_ULTRASONIC_CONT
 BrickPiSetupSensors()
-
-BrickPi.Encoder[RF_WHEEL] = 0
-BrickPi.Encoder[RF_WHEEL] = 0
 BrickPiUpdateValues();
 
 rospy.loginfo("Encoders:" + str(BrickPi.Encoder[RF_WHEEL]) +
