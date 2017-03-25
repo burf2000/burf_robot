@@ -91,8 +91,12 @@ def scan_publisher():
 
         left_encoder = rospy.Publisher('lwheel', Int16, queue_size=10)
         right_encoder = rospy.Publisher('rwheel', Int16, queue_size=10)
-        left_encoder.publish(BrickPi.Encoder[LF_WHEEL])
-        right_encoder.publish(BrickPi.Encoder[RF_WHEEL])
+
+        l = int(BrickPi.Encoder[LF_WHEEL] % 30000)
+        r = int(BrickPi.Encoder[RF_WHEEL] % 30000)
+
+        left_encoder.publish(l)
+        right_encoder.publish(r)
 
 if __name__ == '__main__':
     try:
