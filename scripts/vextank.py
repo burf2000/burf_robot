@@ -44,7 +44,7 @@ BrickPiSetupSensors()
 
 BrickPi.Encoder[RF_WHEEL] = 0
 BrickPi.Encoder[RF_WHEEL] = 0
- BrickPiUpdateValues();
+BrickPiUpdateValues();
 
 rospy.loginfo("Encoders:" + str(BrickPi.Encoder[RF_WHEEL]) +
                   " RSPEED:" + str(BrickPi.Encoder[RF_WHEEL]))
