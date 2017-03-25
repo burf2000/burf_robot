@@ -14,6 +14,9 @@ from std_msgs.msg import UInt16
 from geometry_msgs.msg import Twist
 # from nav_msgs.msg import *
 
+#Importing required ROS data types for the code
+from std_msgs.msg import Int16,Int32, Int64, Float32, String, Header, UInt64
+
 # Model dependend settings
 PI = 3.141
 ROBOT_WIDTH = 0.9
