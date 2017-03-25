@@ -42,6 +42,11 @@ BrickPi.MotorEnable[LF_WHEEL] = 1
 BrickPi.SensorType[PORT_1] = TYPE_SENSOR_ULTRASONIC_CONT
 BrickPiSetupSensors()
 
+BrickPi.Encoder[RF_WHEEL] = 0
+BrickPi.Encoder[RF_WHEEL] = 0
+
+rospy.loginfo("Encoders:" + str(BrickPi.Encoder[RF_WHEEL]) +
+                  " RSPEED:" + str(BrickPi.Encoder[RF_WHEEL]))
 
 def cmd_vel_callback(cmd_vel):
     left_speed_out = cmd_vel.linear.x + cmd_vel.angular.z * ROBOT_WIDTH / 2
