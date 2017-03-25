@@ -87,7 +87,7 @@ def scan_publisher():
         # us.publish(UInt16(range))
         # rospy.loginfo("SCAN:" + str(range))
 
-        rospy.loginfo("ODOM:" + str(BrickPi.Encoder[LF_WHEEL]) + str(BrickPi.Encoder[RF_WHEEL]) )
+        rospy.loginfo("ODOM L:" + str(BrickPi.Encoder[LF_WHEEL]) + " R: " + str(BrickPi.Encoder[RF_WHEEL]) )
 
         left_encoder = rospy.Publisher('lwheel', Int16, queue_size=10)
         right_encoder = rospy.Publisher('rwheel', Int16, queue_size=10)
