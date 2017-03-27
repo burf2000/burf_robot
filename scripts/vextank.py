@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 ##############################################################################
-# Base controller for BurfBot
-# This is a simple control of the 2 servos connected to the BrickPi board
-# Author: burf2000@gmail based off work by chrimo@moccy.xdsnet.de
+# Code to control the VEX Tank
+# Author: burf2000@gmail 
 ##############################################################################
 
 import roslib
 import rospy
+import serial
 
-from BrickPi import *
 from std_msgs.msg import String
 from std_msgs.msg import UInt16
 from geometry_msgs.msg import Twist
@@ -36,23 +35,12 @@ PWRDIV = 1000 * RPS
 
 rospy.loginfo("PWRDIV:" + str(PWRDIV))
 
-RF_WHEEL = PORT_C
-LF_WHEEL = PORT_D
-
-BrickPiSetup()
-BrickPi.MotorEnable[RF_WHEEL] = 1
-BrickPi.MotorEnable[LF_WHEEL] = 1
-BrickPi.Encoder[RF_WHEEL] = 0
-BrickPi.Encoder[RF_WHEEL] = 0
-
-BrickPi.SensorType[PORT_1] = TYPE_SENSOR_ULTRASONIC_CONT
-BrickPiSetupSensors()
-BrickPiUpdateValues();
-
-rospy.loginfo("Encoders:" + str(BrickPi.Encoder[RF_WHEEL]) +
-                  " RSPEED:" + str(BrickPi.Encoder[RF_WHEEL]))
+# setup serial port
+ser = serial.Serial(port='COM9', baudrate=57600)
+print("connected to: " + ser.portstr)
 
 def cmd_vel_callback(cmd_vel):
+
     left_speed_out = cmd_vel.linear.x + cmd_vel.angular.z * ROBOT_WIDTH / 2
     right_speed_out = cmd_vel.linear.x - cmd_vel.angular.z * ROBOT_WIDTH / 2
     v = cmd_vel.linear.x        # speed m/s
@@ -70,38 +58,33 @@ def motor_control(left_speed_out, right_speed_out):
                   " RSPEED:" + str(right_speed_out))
     rospy.loginfo("LSPEED:" + str(left_speed_out) +
                   " RSPEED:" + str(right_speed_out))
-    BrickPi.MotorSpeed[RF_WHEEL] = int(right_speed_out * PWRDIV)
-    rospy.loginfo("RF:" + str(BrickPi.MotorSpeed[RF_WHEEL]))
-    BrickPi.MotorSpeed[LF_WHEEL] = int(left_speed_out * PWRDIV)
-    rospy.loginfo("LF:" + str(BrickPi.MotorSpeed[LF_WHEEL]))
-    BrickPiUpdateValues()
-    time.sleep(.01)
-    scan_publisher()
+    
+    sendString = "%d %d" % (int(right_speed_out * PWRDIV),left_speed_out * PWRDIV)
+    rospy.loginfo(sendString)
 
+    ser.write(sendString.encode())
 
-def scan_publisher():
-    result = BrickPiUpdateValues()
-    if not result:
-        # range = BrickPi.Sensor[PORT_1]
-        # us = rospy.Publisher('scan', UInt16)
-        # us.publish(UInt16(range))
-        # rospy.loginfo("SCAN:" + str(range))
+    time.sleep (0.1)
+    
+    # result = ser.readline()
+    # left_encoder = rospy.Publisher('lwheel', Int16, queue_size=10)
+    # right_encoder = rospy.Publisher('rwheel', Int16, queue_size=10)
 
-        rospy.loginfo("ODOM L:" + str(BrickPi.Encoder[LF_WHEEL]) + " R: " + str(BrickPi.Encoder[RF_WHEEL]) )
+    # l = result
+    # r = result
 
-        left_encoder = rospy.Publisher('lwheel', Int16, queue_size=10)
-        right_encoder = rospy.Publisher('rwheel', Int16, queue_size=10)
+    # rospy.loginfo("ODOM L:" + str(l) + " R: " + str(r) )
+    # left_encoder.publish(l)
+    # right_encoder.publish(r)
 
-        l = int(BrickPi.Encoder[LF_WHEEL] % 30000)
-        r = int(BrickPi.Encoder[RF_WHEEL] % 30000)
-        rospy.loginfo("ODOM L:" + str(l) + " R: " + str(r) )
-        left_encoder.publish(l)
-        right_encoder.publish(r)
+def shuwdown():
+    rospy.loginfo("shutdown time!")
+    ser.close()
 
 if __name__ == '__main__':
     try:
     	rospy.init_node('RobotBaseController')
-	vel_cmd_listener()
+    vel_cmd_listener()
 	time.sleep(.01)
     	rospy.spin()
     except rospy.ROSInterruptException: pass
