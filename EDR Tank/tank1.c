@@ -18,20 +18,22 @@
 
 #include "BNSlib_HC05.h"
 
+int DISTANCE = 20;
+
 task sendReceiveData
 {
 
-    int a = 0;
-	int DISTANCE = 30;
-    string sendString;
-    char returnData[100];
+	int a = 0;
 
-    int leftMotorVal, rightMotorVal;
+	string sendString;
+	char returnData[100];
 
-    while (SensorValue(touchSensor) == 0)
-    {
+	int leftMotorVal, rightMotorVal;
 
-		if (SensorValue(sonarSensorLeft) > DISTANCE && SensorValue(sonarSensorRight) && > DISTANCE)
+	while (SensorValue(touchSensor) == 0)
+	{
+
+		if (SensorValue(sonarSensorLeft) > DISTANCE && SensorValue(sonarSensorRight) > DISTANCE)
 		{
 			a += 1;
 			stringFormat(sendString, "%d,%d.%d,%d", SensorValue(sonarSensorLeft), SensorValue(sonarSensorRight), nMotorEncoder[motor6], nMotorEncoder[motor5]);
@@ -45,9 +47,34 @@ task sendReceiveData
 			bnsSerialRead(UART1, returnData, 100, 100);
 
 			sscanf(returnData, "%d %d", &leftMotorVal, &rightMotorVal);
-			//writeDebugStreamLine("motors %d %d" , leftMotorVal, rightMotorVal );
+			writeDebugStreamLine("motors %d %d" , leftMotorVal, rightMotorVal );
 			//writeDebugStreamLine(returnData);
 
+		}
+
+		delay(100);
+	}
+}
+
+task main()
+{
+
+	// This should match what the AT command set the baudrate to!
+	setBaudRate(UART1, baudRate57600);
+	startTask(sendReceiveData);
+
+	motor[light1] = 127;
+	motor[light2] = 127;
+
+	//Clear the encoders associated with the left and right motors
+	nMotorEncoder[motor5] = 0;
+	nMotorEncoder[motor6] = 0;
+
+	while (SensorValue(touchSensor) == 0)
+	{
+
+		if (SensorValue(sonarSensorLeft) > DISTANCE && SensorValue(sonarSensorRight) > DISTANCE)
+		{
 			// still allow joystick
 			motor[motor2]  = 0 - (vexRT[Ch3]);
 			motor[motor3]  = 0 - (vexRT[Ch3]);
@@ -59,9 +86,8 @@ task sendReceiveData
 			motor[motor8]  = 0 - (vexRT[Ch2]);
 			motor[motor9]  = 0 - (vexRT[Ch2]);
 
-		} 
-		else if (vexRT[Ch3] < 0 && vexRT[Ch2] < 0)
-		{
+		}
+		else if (vexRT[Ch3] < 0 && vexRT[Ch2] < 0){
 			motor[motor2]  = 0 - (vexRT[Ch3]);
 			motor[motor3]  = 0 - (vexRT[Ch3]);
 			motor[motor4]  = 0 - (vexRT[Ch3]);
@@ -72,41 +98,30 @@ task sendReceiveData
 			motor[motor8]  = 0 - (vexRT[Ch2]);
 			motor[motor9]  = 0 - (vexRT[Ch2]);
 		}
+		else {
+			motor[motor2]  = 0;
+			motor[motor3]  = 0;
+			motor[motor4]  = 0;
+			motor[motor5]  = 0;
 
-		
+			motor[motor6]  = 0;
+			motor[motor7]  = 0;
+			motor[motor8]  = 0;
+			motor[motor9]  = 0;
+		}
 
-		delay(100);
-    }
-}
+		/*
 
-task main()
-{
+		*/
+		/*
+		writeDebugStreamLine("pad %f" ,vexRT[Ch3]);
+		writeDebugStreamLine("right %f" , nMotorEncoder[motor5]);
+		writeDebugStreamLine("Left sonar %f" , SensorValue(sonarSensorLeft));
+		writeDebugStreamLine("Right sonar %f" , SensorValue(sonarSensorRight));
+		writeDebugStreamLine("left %f" , nMotorEncoder[motor6]);
+		*/
+	}
 
-    // This should match what the AT command set the baudrate to!
-    setBaudRate(UART1, baudRate57600);
-    startTask(sendReceiveData);
-
-    motor[light1] = 127;
-    motor[light2] = 127;
-
-    //Clear the encoders associated with the left and right motors
-    nMotorEncoder[motor5] = 0;
-    nMotorEncoder[motor6] = 0;
-
-    while (SensorValue(touchSensor) == 0)
-    {
-
-	/*
-   
- */
-	/*
- 		writeDebugStreamLine("right %f" , nMotorEncoder[motor5]);
-    writeDebugStreamLine("Left sonar %f" , SensorValue(sonarSensorLeft));
-    writeDebugStreamLine("Right sonar %f" , SensorValue(sonarSensorRight));
-    writeDebugStreamLine("left %f" , nMotorEncoder[motor6]);
-*/
-    }
-
-    motor[light1] = 0;
-    motor[light2] = 0;
+	motor[light1] = 0;
+	motor[light2] = 0;
 }

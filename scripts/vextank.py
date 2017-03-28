@@ -7,6 +7,7 @@
 import roslib
 import rospy
 import serial
+import time
 
 from std_msgs.msg import String
 from std_msgs.msg import UInt16
@@ -36,7 +37,7 @@ PWRDIV = 1000 * RPS
 rospy.loginfo("PWRDIV:" + str(PWRDIV))
 
 # setup serial port
-ser = serial.Serial(port='COM9', baudrate=57600)
+ser = serial.Serial(port='/dev/ttyUSB0', baudrate=57600)
 print("connected to: " + ser.portstr)
 
 def cmd_vel_callback(cmd_vel):
@@ -84,7 +85,7 @@ def shuwdown():
 if __name__ == '__main__':
     try:
     	rospy.init_node('RobotBaseController')
-    vel_cmd_listener()
+    	vel_cmd_listener()
 	time.sleep(.01)
     	rospy.spin()
     except rospy.ROSInterruptException: pass
